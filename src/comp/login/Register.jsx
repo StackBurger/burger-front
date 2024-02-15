@@ -28,11 +28,11 @@ const Back = styled.div`
 `;
 
 const RegisterBox = styled.form`
+    padding-top: 10px;
     display : flex;
     width : 500px;
-    height : 500px;
+    height : 480px;
     border-radius : 30px;
-    justify-content : center;
     align-items: center;
     flex-direction: column;
     background-color : #FFEF9B;
@@ -75,6 +75,8 @@ const PwBox = styled(InputBox)`
 `;
 
 const RegisterButton = styled.div`
+position :absolute;
+    top: 460px;
     margin-top : 30px;
     width : 200px;
     hegiht : 300px;
@@ -83,14 +85,14 @@ const RegisterButton = styled.div`
     border : none;
     padding : 20px;
     background-color : #FFD90F;
+    font-family:'chab';
     font-size:25px;
     font-weight : 700;
     color : #232323;
     box-shadow: 0px 5px 0px 0px #A66615;
 
     &:hover{
-        margin-top: 45px;
-        margin-bottom : 5px;
+       top:470px;
         box-shadow: 0px 0px 0px 0px #A66615;
 	}
 

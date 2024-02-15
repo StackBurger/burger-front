@@ -4,6 +4,7 @@ import GamePage from './comp/game/GamePage';
 import Register from './comp/login/Register';
 import Login from './comp/login/Login';
 import Home from './comp/login/Home';
+import InHome from './comp/login/InHome';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
         <Route path="/" element={<Home/>}></Route>
+        <Route path="/home" element={<InHome/>}></Route>
           <Route path="/intro" element={<Intro/>}></Route>
           <Route path="/gamepage" element={<GamePage/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
