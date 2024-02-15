@@ -17,7 +17,16 @@ const IngredientStack = ({ orders }) => {
   const [stack, setStack] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [top, setTop] = useState(null);
+  const [timeOnPage, setTimeOnPage] = useState(0);
+  const [ordersMatch, setOrdersMatch] = useState(false); // ordersMatch 상태 추가
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+        setTimeOnPage(prevTime => prevTime + 1);
+      }, 1000);
+    
+      return () => clearInterval(timer);
+    }, []);
   useEffect(() => {
     console.log("주문 배열:", orders);
   }, [orders]);
@@ -28,24 +37,30 @@ const IngredientStack = ({ orders }) => {
   }, [stack, top]);
 
   const handlePush = (value) => {
-    const newStack = [...stack, value];
-    setStack(newStack);
-    setTop(value);
-    setErrorMessage("");
-    console.log("스택에 값이 추가되었습니다:", value);
-
     if (value === 0) {
-      const reversedOrders = [...orders].reverse();
-      let ordersMatch = true;
-      for (let i = 0; i < newStack.length; i++) {
-          if (newStack[i] !== reversedOrders[i]) {
-              ordersMatch = false;
-              break;
-          }
-      }
-      console.log("비교 결과:", ordersMatch ? 1 : 0);
-  }
+      const newStack = [...stack, value];
+      setStack(newStack);
+      setTop(value);
+      setErrorMessage("");
+      console.log("스택에 값이 추가되었습니다:", value);
 
+      const reversedOrders = [...orders].reverse();
+      let match = true;
+      for (let i = 0; i < newStack.length; i++) {
+        if (newStack[i] !== reversedOrders[i]) {
+          match = false;
+          break;
+        }
+      }
+      setOrdersMatch(match); // ordersMatch 업데이트
+      console.log("비교 결과:", match ? 1 : 0);
+    } else {
+      const newStack = [...stack, value];
+      setStack(newStack);
+      setTop(value);
+      setErrorMessage("");
+      console.log("스택에 값이 추가되었습니다:", value);
+    }
   };
 
   const handlePop = () => {
@@ -61,54 +76,77 @@ const IngredientStack = ({ orders }) => {
     }
   };
 
-  const handleClear = () => {
-    setStack([]);
-    setTop(null);
-    setErrorMessage("");
-    console.log("스택이 초기화되었습니다.");
-  };
-
-  const handleBlueCircleClick = () => {
-    console.log("현재 스택 값:", stack);
-  };
-
   return (
     <>
+    
       <BackButton onClick={handlePop}></BackButton>
       <Dish image={
-          top === 0 ? bread_top :
+        top === 0 ? bread_top :
           top === 1 ? tomato :
-          top === 2 ? lettuce :
-          top === 3 ? onion :
-          top === 4 ? bacon :
-          top === 5 ? cheese :
-          top === 6 ? patty :
-          top === 7 ? bread_bottom :
-          null
+            top === 2 ? lettuce :
+              top === 3 ? onion :
+                top === 4 ? bacon :
+                  top === 5 ? cheese :
+                    top === 6 ? patty :
+                      top === 7 ? bread_bottom :
+                        null
       }></Dish>
-      <Bell to={'/outro'}/>
+      <Bell to={`/outro?time=${timeOnPage}&ordersMatch=${ordersMatch ? 'true' : 'false'}`} />
+      <h1>Time: {timeOnPage}초</h1>
       <Desk>
-        <TopIngredient onClick={() => handlePush(0)} image={bread_top}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(1)} image={tomato}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(2)} image={lettuce}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(3)} image={onion}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(4)} image={bacon}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(5)} image={cheese}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(6)} image={patty}></TopIngredient>
-        <TopIngredient onClick={() => handlePush(7)} image={bread_bottom}></TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(0)} // 클릭 이벤트 조건부 처리
+          image={bread_top}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(1)}
+          image={tomato}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(2)}
+          image={lettuce}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(3)}
+          image={onion}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(4)}
+          image={bacon}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(5)}
+          image={cheese}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(6)}
+          image={patty}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
+        <TopIngredient
+          onClick={() => top !== 0 && handlePush(7)}
+          image={bread_bottom}
+          disabled={top === 0 ? false : true}>
+        </TopIngredient>
       </Desk>
     </>
   );
 };
 
+
 export default IngredientStack;
 
 const TopIngredient = styled.div`
-    width : 100px;
-    height : 100px;
-    background : url(${props => props.image});
+    width: 100px;
+    height: 100px;
+    background: url(${props => props.image});
     background-size: cover;
-    cursor: pointer;
 `;
 
 const Desk = styled.div`
@@ -126,12 +164,12 @@ const Desk = styled.div`
 const BackButton = styled.div`
     left: 50px;
     top: 50px;
-    position : absolute;
+    position: absolute;
     width: 50px;
     height: 50px;
     cursor: pointer;
-    background : url(${backicon});
-    background-size : cover;
+    background: url(${backicon});
+    background-size: cover;
 `;
 
 const Dish = styled.div`
@@ -139,20 +177,20 @@ const Dish = styled.div`
     height: 100px;
     left: 200px;
     top: 100px;
-    position : absolute;
+    position: absolute;
     background: url(${props => props.image});
     background-size: cover;
-    border-radius: 50%; /* 원형 모양으로 만듦 */
+    border-radius: 50%;
     cursor: pointer;
 `;
 
 const Bell = styled(Link)`
-    position : absolute;
+    position: absolute;
     top: 55px;
     left: 545px;
-    width : 90px;
-    height : 90px;
-    background : url(${bell});  
+    width: 90px;
+    height: 90px;
+    background: url(${bell});
     background-size: cover;
     cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/img/gamebackground.jpg';
 import IngredientStack from './IngredientStack';
@@ -6,6 +6,7 @@ import OrderStack from './OrderStack';
 
 
 const GamePage = () => {
+    
     return (
         <div>
             <Back>
