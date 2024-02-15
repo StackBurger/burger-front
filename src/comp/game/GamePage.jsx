@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/img/playbackground.png';
 import IngredientStack from './IngredientStack';
+import OrderStack from './OrderStack';
+import bell from '../../assets/img/bell.png';
+
 const GamePage = () => {
     return (
         <div>
             <Back>
-                <IngredientStack/>         
+                <IngredientStack/>    
+                <OrderStack/>
+                <Bell/> 
             </Back>
         </div>
     );
@@ -24,14 +29,12 @@ const Back = styled.div`
     background-size: cover;
 `;
 
-const Desk = styled.div`
-    position: absolute; /* 절대 위치 */
-    left: 100px;
-    bottom: 100px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4개의 열 */
-    grid-template-rows: repeat(2, 1fr); /* 2개의 행 */
-    gap: 100px; /* 셀 사이의 간격 조절 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
+const Bell = styled.div`
+    position : absolute;
+    top: 55px;
+    left: 545px;
+    width : 90px;
+    height : 90px;
+    background : url(${bell});  
+    background-size: cover;
 `;

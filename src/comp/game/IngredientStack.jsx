@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import patty from '../../assets/img/patty.png';
 import tomato from '../../assets/img/tomato.png';
 import backicon from '../../assets/icon/backicon.svg';
+import bread_top from '../../assets/img/bread_top.png';
+import bread_bottom from '../../assets/img/bread_bottom.png';
 
 const IngredientStack = () => {
   const [stack, setStack] = useState([]);
@@ -49,10 +51,18 @@ const IngredientStack = () => {
   return (
     <>
       <BackButton onClick={handlePop}></BackButton>
-      <Dish image={top === "1" ? patty : top === "2" ? tomato : null}></Dish>
+      <Dish image={
+          top === "1" ? patty :
+          top === "2" ? tomato :
+          top === "0" ? bread_top :
+          top === "7" ? bread_bottom :
+          null
+      }></Dish>
       <Desk>
+        <TopIngredient onClick={() => handlePush("0")} image={bread_top}></TopIngredient>
         <TopIngredient onClick={() => handlePush("1")} image={patty}></TopIngredient>
         <TopIngredient onClick={() => handlePush("2")} image={tomato}></TopIngredient>
+        <TopIngredient onClick={() => handlePush("7")} image={bread_bottom}></TopIngredient>
         <BlueCircle onClick={handleBlueCircleClick}></BlueCircle>
       </Desk>
       </>
