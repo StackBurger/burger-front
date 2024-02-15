@@ -41,11 +41,6 @@ const Title = styled.div`
     color : #232323;
 `;
 
-const Footer = styled.div`
-    display : flex;
-    justify-content : space-evenly;
-    align-items: center;
-`;
 
 const RegisterBox = styled.form`
     display : flex;
