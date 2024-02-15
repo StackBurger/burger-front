@@ -4,6 +4,8 @@ import GamePage from './comp/game/GamePage';
 import LoginHandeler from "./comp/login/LoginHandeler";
 import Home from './comp/login/Home';
 import InHome from './comp/login/InHome';
+import Outro from './comp/outro/Outro';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 
@@ -18,8 +20,8 @@ function App() {
           <Route path="/intro" element={<Intro/>}></Route>
           <Route path="/gamepage" element={<GamePage/>}></Route>
           <Route path="/login/oauth2/callback/kakao"
-              element={<LoginHandeler/>}
-          />
+              element={<LoginHandeler/>}</Route>
+          <Route path='/outro' element={<Outro/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
