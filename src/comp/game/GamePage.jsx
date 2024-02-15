@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import background from '../../assets/img/playbackground.png';
-import Patty from './ingredient/Patty';
-import Tomato from './ingredient/Tomato';
-
+import IngredientStack from './IngredientStack';
 const GamePage = () => {
     return (
         <div>
             <Back>
-                <Desk>
-                    <Patty />
-                    <Tomato />
-                </Desk>
+                <IngredientStack/>         
             </Back>
         </div>
     );
