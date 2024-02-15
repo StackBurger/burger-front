@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import background from '../../assets/img/storebackground.png';
 
-
 const Outro = () => {
-   
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const time = queryParams.get('time');
+    const ordersMatch = queryParams.get('ordersMatch');
 
+    console.log('Time value:', time);
+    console.log('Orders match:', ordersMatch);
+    
     return (
         <div>
             <Back>
