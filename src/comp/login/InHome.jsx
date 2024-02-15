@@ -3,19 +3,18 @@ import styled from 'styled-components';
 import loginback from '../../assets/img/loginback.png';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const InHome = () => {
     return (
         <Back>
             <Title>버거버벅버거</Title>
             <RegisterBox>
-            <LoginLink to='/login'>로그인</LoginLink>
-            <RegisterLink to='/register'>회원가입</RegisterLink>
+            <StartLink to='/gamepage'>Game Start</StartLink>
             </RegisterBox>
         </Back>
     );
 };
 
-export default Home;
+export default InHome;
 
 const Back = styled.div`   
     display : flex;
@@ -40,6 +39,12 @@ const Title = styled.div`
     font-family:'chab';
     font-size : 100px;
     color : #232323;
+`;
+
+const Footer = styled.div`
+    display : flex;
+    justify-content : space-evenly;
+    align-items: center;
 `;
 
 const RegisterBox = styled.form`
