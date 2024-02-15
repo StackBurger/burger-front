@@ -76,8 +76,7 @@ const PwBox = styled(InputBox)`
 
 const RegisterButton = styled.div`
 position :absolute;
-    top: 460px;
-    margin-top : 30px;
+    top: 65%;
     width : 200px;
     hegiht : 300px;
     text-align : center;

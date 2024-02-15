@@ -126,7 +126,7 @@ const PwBox = styled(InputBox)`
 
 const RegisterButton = styled.div`
 position :absolute;
-    top: 440px;
+    top: 55%;
     margin-top : 30px;
     width : 200px;
     hegiht : 300px;
@@ -142,7 +142,7 @@ position :absolute;
     box-shadow: 0px 5px 0px 0px #A66615;
 
     &:hover{
-       top:450px;
+       top:56%;
         box-shadow: 0px 0px 0px 0px #A66615;
 	}
 

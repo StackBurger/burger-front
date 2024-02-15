@@ -79,16 +79,10 @@ const StyledLink = styled(Link)`
 const LoginLink = styled(StyledLink)`
     width : 200px;
     hegiht : 300px;
-    top: 480px;
+    top: 62%;
 `;
 const RegisterLink = styled(StyledLink)`
     width : 200px;
     hegiht : 300px;
-    top: 580px;
-`;
-const StartLink = styled(StyledLink)`
-    background-color : #F13737;
-    color : #FFFFFF;
-    width : 250px;
-    hegiht : 250px;
+    top: 75%;
 `;
