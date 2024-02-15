@@ -93,3 +93,11 @@ html, body {
   font-display: swap;
   src: url('./assets/font/chab.ttf') format("truetype");
 }
+
+@font-face {
+  font-family: 'hsu';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/font/hsu.ttf') format("truetype");
+}

@@ -1,8 +1,7 @@
 import './App.css';
 import Intro from './comp/intro/Intro';
 import GamePage from './comp/game/GamePage';
-import Register from './comp/login/Register';
-import Login from './comp/login/Login';
+import LoginHandeler from "./comp/login/LoginHandeler";
 import Home from './comp/login/Home';
 import InHome from './comp/login/InHome';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -18,8 +17,9 @@ function App() {
         <Route path="/home" element={<InHome/>}></Route>
           <Route path="/intro" element={<Intro/>}></Route>
           <Route path="/gamepage" element={<GamePage/>}></Route>
-          <Route path='/register' element={<Register/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path="/login/oauth2/callback/kakao"
+              element={<LoginHandeler/>}
+          />
         </Routes>
       </BrowserRouter>
     </div>

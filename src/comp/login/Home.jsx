@@ -3,13 +3,23 @@ import styled from 'styled-components';
 import loginback from '../../assets/img/loginback.png';
 import { Link } from 'react-router-dom';
 
+
 const Home = () => {
+    const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
+    const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
+
+    const code = new URL(window.location.href).searchParams.get("code");
+    // oauth 요청 URL
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    const handleLogin = ()=>{
+        window.location.href = kakaoURL
+    }
     return (
         <Back>
-            <Title>버거버벅버거</Title>
+            <Title>머거버거</Title>
             <RegisterBox>
-            <LoginLink to='/login'>로그인</LoginLink>
-            <RegisterLink to='/register'>회원가입</RegisterLink>
+            <LoginLink onClick={handleLogin}>카카오 로그인</LoginLink>
+            <RegisterLink>로그인</RegisterLink>
             </RegisterBox>
         </Back>
     );
@@ -37,8 +47,10 @@ const Title = styled.div`
     background-color : #FFEF9B;
     border-radius : 30px;
     padding : 20px;
-    font-family:'chab';
-    font-size : 100px;
+    letter-spacing:-15px;
+    font-family:'hsu';
+    font-size : 200px;
+    font-weight: 900;
     color : #232323;
 `;
 
